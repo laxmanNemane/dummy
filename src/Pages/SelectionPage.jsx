@@ -1,31 +1,74 @@
-import { Box, Card, Grid } from '@mui/material'
-import React from 'react'
+import { Box, Button, Card, Checkbox, FormControlLabel, Grid } from '@mui/material'
+import React, { useState } from 'react'
 
 const SelectionPage = () => {
+    const [selectionState, setSelectionState] = useState({
+        textsAds: false,
+        mediaAds: false,
+    })
+
+    const handleCheckboxChange = (event, adsType) => {
+        if (adsType === "textsAds") {
+            setSelectionState((prev) => ({ ...prev, textsAds: event.target.checked }))
+
+        } else if (adsType === "mediaAds") {
+
+            setSelectionState((prev) => ({ ...prev, mediaAds: event.target.checked }))
+        }
+
+    };
     return (
         <Box>
-            <Grid container spacing={2} sx={{ p: 8 }}>
-                <Grid item xs={0} sm={0} md={2} lg={2} sx={{ textAlign: "center" }} >
+            <h1 style={{ fontSize: "22px", fontWeight: "500" }}>Create Ads</h1>
+            <Grid container spacing={2} sx={{ pt: 8 }}>
+
+                <Grid item xs={0} sm={0} md={3} lg={3} sx={{ textAlign: "center" }} >
 
                 </Grid>
-                <Grid item xs={12} sm={12} md={4} lg={4} sx={{ textAlign: "center" }} >
-                    <Box >
-                        <Card>
-                            mobileUi
-                            <Box>
-                                <h2>Create <span>Text Ads</span></h2>
-                            </Box>
-                        </Card>
+                <Grid item xs={12} sm={12} md={3} lg={3} sx={{ textAlign: "center" }} >
+
+                    <Card sx={{ display: "flex", flexDirection: "column", p: 2 }}>
+
+
+                        <FormControlLabel
+                            control={<Checkbox checked={selectionState?.textsAds} onChange={(event) => handleCheckboxChange(event, "textsAds")} />}
+                            label=""
+                        />
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOT9rIM-DnHulOw1H3pnTBnhJ-DcxZvjy61Q&usqp=CAU" alt="" style={{ borderRadius: "6px 6px 0 0" }} />
+                        <Box>
+                            <h2 style={{ display: "flex", flexDirection: "column", fontSize: "18px" }}>Create <span style={{ fontSize: "15px", fontWeight: "500" }}>Text Ads</span></h2>
+                        </Box>
+                    </Card>
+
+                </Grid>
+                <Grid item xs={12} sm={12} md={3} lg={3} sx={{ textAlign: "center" }} >
+
+                    <Card sx={{ display: "flex", flexDirection: "column", p: 2 }}>
+
+
+                        <FormControlLabel
+                            control={<Checkbox checked={selectionState?.mediaAds} onChange={(event) => handleCheckboxChange(event, "mediaAds")} />}
+                            label=""
+                        />
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOT9rIM-DnHulOw1H3pnTBnhJ-DcxZvjy61Q&usqp=CAU" alt="" style={{ borderRadius: "6px 6px 0 0" }} />
+                        <Box>
+                            <h2 style={{ display: "flex", flexDirection: "column", fontSize: "18px" }}>Create <span style={{ fontSize: "15px", fontWeight: "500" }}>Media Ads</span></h2>
+                        </Box>
+                    </Card>
+                </Grid>
+                <Grid item xs={0} sm={0} md={3} lg={3} sx={{ textAlign: "center" }} >
+
+                </Grid>
+
+                <Grid item xs={12} sm={12} md={12} lg={12} sx={{ textAlign: "end" }} >
+                    <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 4, pt: 8 }}>
+
+
+                        <Button type="submit" variant="contained" color="primary">
+                            Next
+                        </Button>
+
                     </Box>
-                </Grid>
-                <Grid item xs={12} sm={12} md={4} lg={4} sx={{ textAlign: "center" }} >
-                    <Box>
-
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, rerum esse, in nobis aut et quod neque qui ipsum reprehenderit architecto. Sequi, et.</p>
-                    </Box>
-                </Grid>
-                <Grid item xs={0} sm={0} md={2} lg={2} sx={{ textAlign: "center" }} >
-
                 </Grid>
 
             </Grid>
