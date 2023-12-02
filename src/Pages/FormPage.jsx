@@ -1,4 +1,4 @@
-import { Box, Button, Grid, IconButton, InputLabel, MenuItem, Modal, Select, Stack, TextField, Typography } from '@mui/material';
+import { Box, Button, Grid, IconButton, MenuItem, Modal, Select, Stack, TextField, Typography } from '@mui/material';
 import React from 'react'
 import { useFormik } from "formik"
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
@@ -21,9 +21,9 @@ const Modalstyle = {
 
 const FormPage = () => {
 
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const [isSubmittingOpen, setIsSubmittingOpen] = React.useState(false);
+
+
     const formik = useFormik({
         initialValues: {
             heading01: '',
@@ -34,15 +34,26 @@ const FormPage = () => {
             buttonLabel: '',
         },
         onSubmit: (values) => {
-            // You can perform any action with the form values here
             console.log(
                 values, "values"
             );
-            setOpen(true)
+            handleOpen()
         },
     });
 
     const buttonLabelOptions = ['Option 1', 'Option 2', 'Option 3']; // Add your options here
+
+    const handleOpen = () => {
+        // open submitting page
+        setIsSubmittingOpen(true)
+        // close after 0.6 sec
+        setTimeout(() => {
+            handleClose()
+        }, 600);
+    };
+
+    // close modal
+    const handleClose = () => setIsSubmittingOpen(false);
 
     return (
         <div>
@@ -168,7 +179,7 @@ const FormPage = () => {
 
 
             <Modal
-                open={open}
+                open={isSubmittingOpen}
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"

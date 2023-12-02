@@ -1,13 +1,18 @@
 import { Box, Button, Card, Checkbox, FormControlLabel, Grid } from '@mui/material'
 import React, { useState } from 'react'
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'
 
 const SelectionPage = () => {
+    const navigate = useNavigate();
     const [selectionState, setSelectionState] = useState({
         textsAds: false,
         mediaAds: false,
     })
 
     const handleCheckboxChange = (event, adsType) => {
+
+
         if (adsType === "textsAds") {
             setSelectionState((prev) => ({ ...prev, textsAds: event.target.checked }))
 
@@ -16,7 +21,18 @@ const SelectionPage = () => {
             setSelectionState((prev) => ({ ...prev, mediaAds: event.target.checked }))
         }
 
+
+
+
     };
+
+    const GoToCreateAds = () => {
+        if (selectionState?.textsAds || selectionState?.mediaAds) {
+            navigate("/createAds")
+        }
+    }
+
+
     return (
         <Box>
             <h1 style={{ fontSize: "22px", fontWeight: "500" }}>Create Ads</h1>
@@ -64,7 +80,7 @@ const SelectionPage = () => {
                     <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 4, pt: 8 }}>
 
 
-                        <Button type="submit" variant="contained" color="primary">
+                        <Button type="submit" variant="contained" color="primary" onClick={() => GoToCreateAds()}>
                             Next
                         </Button>
 

@@ -13,7 +13,7 @@ const Header = () => {
                         APP LOGO
                     </Typography>
                     <Button color="inherit" onClick={() => navigate("/dashboard")} >DASHBOARD</Button>
-                    <Button color="inherit" onClick={() => navigate("/form")}>CREATE ADS</Button>
+                    <Button color="inherit" onClick={() => navigate("/createAds")}>CREATE ADS</Button>
 
                 </Toolbar>
             </AppBar>

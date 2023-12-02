@@ -1,19 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Chart from '../Component/Chart'
-import { Box, FormControl, FormControlLabel, InputLabel, MenuItem, Select, Switch, } from '@mui/material'
+import { Box, FormControl, FormControlLabel, InputLabel, MenuItem, Select, Switch, Grid } from '@mui/material'
 import SurvayTable from '../Component/Table';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import styled from '@emotion/styled';
 
 const Dashboard = () => {
-    const [age, setAge] = React.useState('');
-    const [checked, setChecked] = React.useState(true);
+    const [dashbaordState, setDashboardState] = useState({
+        graphSelect: "",
+        toggle: false
+    })
+
 
 
     const handleChange = (event) => {
-        setAge(event.target.value);
+        setDashboardState((prev) => ({
+            ...prev, toggle: !dashbaordState?.toggle, graphSelect: event?.target?.value
+        }))
     };
     const handleToggleChange = (event) => {
-        setChecked(event.target.checked);
+        setDashboardState((prev) => ({
+            ...prev, toggle: event.target?.checked,
+        }))
+
     };
 
     const Android12Switch = styled(Switch)(({ theme }) => ({
@@ -50,46 +59,49 @@ const Dashboard = () => {
     }));
     return (
 
-        <Box display="flex" flexDirection={{ xs: 'column', md: 'row' }} >
-            <Box border={1} borderRadius={1} borderColor="black" flex={1} margin={{ xs: 0, md: 1 }}>
-                <Box className="Header-ads_insights" padding={1} sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "2px solid gray" }}>
-                    <h2 >Ad Insights</h2>
-
+        <Grid container spacing={2} p={4}  >
+            <Grid item xs={12} sm={12} md={6} lg={6} sx={{ textAlign: "center", p: 1 }}  >
+                <Box border={1} >
+                    <Box className="Header-ads_insights" padding={1} sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "2px solid gray" }}>
+                        <h2 >Ad Insights</h2>
+                        <HelpOutlineIcon />
+                    </Box>
+                    <SurvayTable />
                 </Box>
-                <SurvayTable />
-            </Box>
-            <Box border={1} borderRadius={1} borderColor="black" flex={1} margin={{ xs: 1, md: 0 }}>
-                <Box className="Header-ads_insights" padding={1} sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "2px solid gray" }}>
-                    <h2>Ad Insights</h2>
-                    <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                        <InputLabel id="demo-select-small-label">Age</InputLabel>
-                        <Select
-                            labelId="demo-select-small-label"
-                            id="demo-select-small"
-                            value={age}
-                            label="Age"
-                            onChange={handleChange}
-                        >
-                            <MenuItem value="">
-                                <em>None</em>
-                            </MenuItem>
-                            <MenuItem value={10}>Ten</MenuItem>
-                            <MenuItem value={20}>Twenty</MenuItem>
-                            <MenuItem value={30}>Thirty</MenuItem>
-                        </Select>
-                    </FormControl>
-                </Box>
+            </Grid>
+            <Grid item xs={12} sm={12} md={6} lg={6} sx={{ textAlign: "center", p: 1 }} >
+                <Box border={1} >
+                    <Box className="Header-ads_insights" padding={1} sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "2px solid gray" }}>
+                        <h2>Ad Insights</h2>
+                        <div style={{ display: "flex", alignItems: "center" }}>
+                            <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                                <InputLabel id="demo-select-small-label">Age</InputLabel>
+                                <Select
+                                    labelId="demo-select-small-label"
+                                    id="demo-select-small"
+                                    value={dashbaordState?.graphSelect}
+                                    label="Select"
+                                    onChange={handleChange}
+                                >
+                                    <MenuItem value={10}>matrix</MenuItem>
+                                </Select>
+                            </FormControl>
+                            <HelpOutlineIcon />
+                        </div>
+                    </Box>
 
-                <Chart />
-                <Box display={"flex"} justifyContent={"flex-end"}>
+                    <Chart />
+                    <Box display={"flex"} justifyContent={"flex-end"} pb={1}>
 
-                    <FormControlLabel
-                        control={<Android12Switch checked={checked}
-                            onChange={handleToggleChange} />}
-                    />
+                        <FormControlLabel
+                            control={<Android12Switch checked={dashbaordState?.toggle}
+                                onChange={handleToggleChange} />}
+                        />
+                    </Box>
                 </Box>
-            </Box>
-        </Box>
+            </Grid>
+        </Grid>
+
 
     )
 }

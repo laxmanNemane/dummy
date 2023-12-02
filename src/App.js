@@ -12,7 +12,7 @@ const App = () => {
         <Route element={<MainContent />}>
           <Route path="/" element={<SelectionPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/form" element={<FormPage />} />
+          <Route path="/createAds" element={<FormPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
