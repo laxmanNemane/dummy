@@ -10,7 +10,7 @@ const Header = () => {
             <AppBar sx={{ backgroundColor: 'white', color: "black" }}>
                 <Toolbar>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1, cursor: "pointer" }} onClick={() => navigate("/")}>
-                        APP LOGO
+                        logo
                     </Typography>
                     <Button color="inherit" onClick={() => navigate("/dashboard")} >DASHBOARD</Button>
                     <Button color="inherit" onClick={() => navigate("/createAds")}>CREATE ADS</Button>

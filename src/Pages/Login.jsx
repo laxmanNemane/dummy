@@ -1,6 +1,7 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { TextField, Button, Typography, Container, CssBaseline, Grid } from '@mui/material';
 
 const LoginForm = () => {
     const formik = useFormik({
@@ -19,37 +20,51 @@ const LoginForm = () => {
     });
 
     return (
-        <form onSubmit={formik.handleSubmit}>
+        <Container component="main" maxWidth="xs">
+            <CssBaseline />
             <div>
-                <label htmlFor="email">Email:</label>
-                <input
-                    type="text"
-                    id="email"
-                    name="email"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.email}
-                />
-                {formik.touched.email && formik.errors.email ? (
-                    <div>{formik.errors.email}</div>
-                ) : null}
+                <Typography component="h1" variant="h5">
+                    Login
+                </Typography>
+                <form onSubmit={formik.handleSubmit}>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                            <TextField
+                                fullWidth
+                                variant="outlined"
+                                id="email"
+                                name="email"
+                                label="Email"
+                                type="text"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.email}
+                                error={formik.touched.email && Boolean(formik.errors.email)}
+                                helperText={formik.touched.email && formik.errors.email}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                fullWidth
+                                variant="outlined"
+                                id="password"
+                                name="password"
+                                label="Password"
+                                type="password"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.password}
+                                error={formik.touched.password && Boolean(formik.errors.password)}
+                                helperText={formik.touched.password && formik.errors.password}
+                            />
+                        </Grid>
+                    </Grid>
+                    <Button type="submit" fullWidth variant="contained" color="primary">
+                        Login
+                    </Button>
+                </form>
             </div>
-            <div>
-                <label htmlFor="password">Password:</label>
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.password}
-                />
-                {formik.touched.password && formik.errors.password ? (
-                    <div>{formik.errors.password}</div>
-                ) : null}
-            </div>
-            <button type="submit">Login</button>
-        </form>
+        </Container>
     );
 };
 
