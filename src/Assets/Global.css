@@ -1,8 +1,0 @@
-@media (min-width: 400px) {
-  .InsidesTable {
-    order: 2 !important ;
-  }
-  .chartInsights {
-    order: 1 !important;
-  }
-}

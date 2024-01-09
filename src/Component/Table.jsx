@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 
 import NorthIcon from '@mui/icons-material/North';
-import SouthIcon from '@mui/icons-material/South'; import { servayRecords } from '../Data/TableData';
+import SouthIcon from '@mui/icons-material/South';
+import { servayRecords } from '../Data/TableData';
 
 const SurvayTable = () => {
 

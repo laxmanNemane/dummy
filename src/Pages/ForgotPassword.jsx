@@ -1,6 +1,7 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { TextField, Button, Typography, Container, CssBaseline, Grid } from '@mui/material';
 
 const ForgotPasswordForm = () => {
     const formik = useFormik({
@@ -17,25 +18,37 @@ const ForgotPasswordForm = () => {
     });
 
     return (
-        <form onSubmit={formik.handleSubmit}>
+        <Container component="main" maxWidth="xs">
+            <CssBaseline />
             <div>
-                <label htmlFor="email">Email:</label>
-                <input
-                    type="text"
-                    id="email"
-                    name="email"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.email}
-                />
-                {formik.touched.email && formik.errors.email ? (
-                    <div>{formik.errors.email}</div>
-                ) : null}
+                <Typography component="h1" variant="h5">
+                    Forgot Password
+                </Typography>
+                <form onSubmit={formik.handleSubmit}>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                            <TextField
+                                fullWidth
+                                variant="outlined"
+                                id="email"
+                                name="email"
+                                label="Email"
+                                type="text"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.email}
+                                error={formik.touched.email && Boolean(formik.errors.email)}
+                                helperText={formik.touched.email && formik.errors.email}
+                            />
+                        </Grid>
+                    </Grid>
+                    <Button type="submit" fullWidth variant="contained" color="primary">
+                        Submit
+                    </Button>
+                </form>
             </div>
-
-            <button type="submit">Submit</button>
-        </form>
+        </Container>
     );
 };
 
-export default ForgotPas
+export default ForgotPasswordForm;

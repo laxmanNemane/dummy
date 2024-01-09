@@ -45,7 +45,6 @@ function Chart() {
 
     return (
         <div className="chart">
-
             <ReactApexChart
                 options={state?.options}
                 series={state?.series}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { AppStrings } from '../Helper/Constant';
 
 const RegistrationForm = () => {
     const formik = useFormik({
@@ -42,7 +43,7 @@ const RegistrationForm = () => {
             </div>
 
             <div>
-                <label htmlFor="email">Email:</label>
+                <label htmlFor="email">{AppStrings?.email}:</label>
                 <input
                     type="text"
                     id="email"
